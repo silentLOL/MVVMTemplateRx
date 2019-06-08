@@ -1,4 +1,4 @@
-package at.stefanirndorfer.spreadit.view;
+package at.stefanirndorfer.spreadit.view.base;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import at.stefanirndorfer.spreadit.view.listener.BackPressListener;
 import at.stefanirndorfer.spreadit.viewmodel.base.BaseActivityViewModel;
-import at.stefanirndorfer.spreadit.viewmodel.listener.ActivityViewModelListener;
+import at.stefanirndorfer.spreadit.viewmodel.listener.ViewModelListener;
 
-public abstract class BaseActivity<VIEW_MODEL extends BaseActivityViewModel> extends AppCompatActivity implements ActivityViewModelListener {
+public abstract class BaseActivitiy<VIEW_MODEL extends BaseActivityViewModel> extends AppCompatActivity implements ViewModelListener {
 
-    private static final String TAG = "BaseActivity";
+    private static final String TAG = "BaseActivitiy";
 
     private VIEW_MODEL viewModel;
     private boolean isResumed;

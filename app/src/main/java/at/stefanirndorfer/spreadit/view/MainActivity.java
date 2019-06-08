@@ -1,13 +1,20 @@
 package at.stefanirndorfer.spreadit.view;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import at.stefanirndorfer.spreadit.R;
+import at.stefanirndorfer.spreadit.viewmodel.ViewModelFactory;
+import at.stefanirndorfer.spreadit.view.base.BaseActivitiy;
+import at.stefanirndorfer.spreadit.view.dialogs.DialogManager;
 import at.stefanirndorfer.spreadit.viewmodel.MainActivityViewModel;
 
-public class MainActivity extends BaseActivity<MainActivityViewModel> implements MainActivityViewModel.MainActivityViewModelListener {
+public class MainActivity extends BaseActivitiy<MainActivityViewModel> implements MainActivityViewModel.MainViewModelListener {
 
     private static final String TAG = "MainActivity";
+    private static final String START_KEY = "START_KEY";
+    public static final String START_MOVIE_LIST = "start_movie_list";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -15,9 +22,17 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> implements
         setContentView(R.layout.activity_main);
     }
 
+    public static Intent startOnMain(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(START_KEY, MainActivityViewModel.SHOW_LIST);
+        return intent;
+    }
+
+
     @Override
     protected MainActivityViewModel createViewModel() {
-        return new MainActivityViewModel(this);
+        ViewModelFactory factory = ViewModelFactory.getInstance(this.getApplication());
+        return factory.createActivityViewModel(MainActivityViewModel.class, this);
     }
 
     @Override
@@ -37,4 +52,27 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> implements
         }
     }
 
+    @Override
+    public String getStartValue() {
+        return getIntent().getStringExtra(START_KEY);
+    }
+
+    //-----------------------------------------
+    //----- NavigationController --------------
+    //-----------------------------------------
+
+    @Override
+    public void navigateToMovieListFragment() {
+        popStackToBegin();
+        navigateToNextScreen(MovieListFragment.newInstance(null), MovieListFragment.TAG);
+    }
+
+    /**
+     * todo: implement
+     * @return
+     */
+    @Override
+    public DialogManager getDialogManager() {
+        return null;
+    }
 }

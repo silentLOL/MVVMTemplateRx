@@ -8,6 +8,7 @@ import android.util.Log;
 
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.android.ActivityEvent;
+import com.trello.rxlifecycle2.android.FragmentEvent;
 import com.trello.rxlifecycle2.android.RxLifecycleAndroid;
 
 import androidx.annotation.CallSuper;
@@ -20,9 +21,9 @@ import io.reactivex.MaybeTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class BaseActivityViewModel<VIEW_MODEL_LISTENER extends ViewModelListener> extends LifeCycleBaseViewModel<ActivityEvent> {
+public abstract class BaseFragmentViewModel<VIEW_MODEL_LISTENER extends ViewModelListener> extends LifeCycleBaseViewModel<FragmentEvent> {
 
-    private static final String TAG = BaseActivityViewModel.class.getSimpleName();
+    private static final String TAG = BaseFragmentViewModel.class.getSimpleName();
     private static final String USER_KEY = "user";
     private VIEW_MODEL_LISTENER listener;
 
@@ -31,44 +32,12 @@ public abstract class BaseActivityViewModel<VIEW_MODEL_LISTENER extends ViewMode
     private final DataRepository dataRepository;
     private User user;
 
-    public BaseActivityViewModel(VIEW_MODEL_LISTENER listener, Application application, DataRepository dataRepository) {
+    public BaseFragmentViewModel(VIEW_MODEL_LISTENER listener, Application application, DataRepository dataRepository) {
         this.listener = listener;
         context = application.getApplicationContext();
         this.dataRepository = dataRepository;
     }
 
-    @CallSuper
-    public void onCreate(Bundle savedInstanceState) {
-        this.getLifecycleSubject().onNext(ActivityEvent.CREATE);
-    }
-
-    @CallSuper
-    public void onStart() {
-        this.getLifecycleSubject().onNext(ActivityEvent.START);
-    }
-
-    @CallSuper
-    public void onStop() {
-        this.getLifecycleSubject().onNext(ActivityEvent.STOP);
-    }
-
-    @CallSuper
-    public void onResume() {
-        this.getLifecycleSubject().onNext(ActivityEvent.RESUME);
-    }
-
-    @CallSuper
-    public void onPause() {
-        this.getLifecycleSubject().onNext(ActivityEvent.PAUSE);
-    }
-
-    @CallSuper
-    public void onDestroy() {
-        this.getLifecycleSubject().onNext(ActivityEvent.DESTROY);
-    }
-
-    public void restoreState(Bundle savedInstanceState) {
-    }
 
     public void saveState(Bundle outState) {
         Log.d(TAG, "saveState() called with: outState = [" + outState + "]");
@@ -83,7 +52,7 @@ public abstract class BaseActivityViewModel<VIEW_MODEL_LISTENER extends ViewMode
 
     @NonNull
     public <T> LifecycleTransformer<T> bindToLifecycle() {
-        return RxLifecycleAndroid.bindActivity(this.getLifecycleSubject());
+        return RxLifecycleAndroid.bindFragment(this.getLifecycleSubject());
     }
 
     protected Maybe<User> requestUser(Bundle savedInstanceState) {
@@ -128,4 +97,50 @@ public abstract class BaseActivityViewModel<VIEW_MODEL_LISTENER extends ViewMode
     protected VIEW_MODEL_LISTENER getListener() {
         return listener;
     }
+
+    @CallSuper
+    public void onCreate() {
+        this.getLifecycleSubject().onNext(FragmentEvent.CREATE);
+    }
+
+    @CallSuper
+    public void onStart() {
+        this.getLifecycleSubject().onNext(FragmentEvent.START);
+    }
+
+    @CallSuper
+    public void onResume() {
+        this.getLifecycleSubject().onNext(FragmentEvent.RESUME);
+    }
+
+    @CallSuper
+    public void onPause() {
+        this.getLifecycleSubject().onNext(FragmentEvent.PAUSE);
+    }
+
+    @CallSuper
+    public void onStop() {
+        this.getLifecycleSubject().onNext(FragmentEvent.STOP);
+    }
+
+    @CallSuper
+    public void onAttached() {
+        this.getLifecycleSubject().onNext(FragmentEvent.ATTACH);
+    }
+
+    @CallSuper
+    public void onDetached() {
+        this.getLifecycleSubject().onNext(FragmentEvent.DETACH);
+    }
+
+    @CallSuper
+    public void onDestroyView() {
+        this.getLifecycleSubject().onNext(FragmentEvent.DESTROY_VIEW);
+    }
+
+    @CallSuper
+    public void onDestroy() {
+        this.getLifecycleSubject().onNext(FragmentEvent.DESTROY);
+    }
+
 }
