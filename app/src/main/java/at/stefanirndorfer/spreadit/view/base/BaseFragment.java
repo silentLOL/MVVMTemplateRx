@@ -48,8 +48,7 @@ public abstract class BaseFragment<VIEW_BINDING extends ViewDataBinding, VIEW_MO
         viewModel = createViewModel();
         viewBinding.setVariable(getViewModelId(), viewModel);
         viewModel.onCreate();
-
-        dialogManager = new DialogManagerImpl(getContext());
+        dialogManager = new DialogManagerImpl(getActivity());
     }
 
     @Override
@@ -99,7 +98,7 @@ public abstract class BaseFragment<VIEW_BINDING extends ViewDataBinding, VIEW_MO
     }
 
     public Context getAppContext() {
-        return getActivity();
+        return getActivity().getApplicationContext();
     }
 
     public DialogManager getDialogManager() {

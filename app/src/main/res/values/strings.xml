@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">spread it</string>
+
+    <string name="ok">OK</string>
+    <string name="example_dialog_title">This is a Dialog</string>
+    <string name="example_dialog_msg">Hallo, liebe Familie.</string>
+    <string name="cancel">Cancel</string>
 </resources>

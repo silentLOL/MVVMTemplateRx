@@ -86,6 +86,9 @@ dependencies {
     implementation "android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
     annotationProcessor "android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
 
+    // material dialog
+    implementation "com.afollestad.material-dialogs:core:$rootProject.materialDialogsVersion"
+
     testImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "junit:junit:$rootProject.junitVersion"
     androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"

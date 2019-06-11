@@ -5,12 +5,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import at.stefanirndorfer.spreadit.R;
-import at.stefanirndorfer.spreadit.viewmodel.ViewModelFactory;
-import at.stefanirndorfer.spreadit.view.base.BaseActivitiy;
+import at.stefanirndorfer.spreadit.view.base.BaseActivity;
 import at.stefanirndorfer.spreadit.view.dialogs.DialogManager;
+import at.stefanirndorfer.spreadit.view.dialogs.DialogManagerImpl;
 import at.stefanirndorfer.spreadit.viewmodel.MainActivityViewModel;
+import at.stefanirndorfer.spreadit.viewmodel.ViewModelFactory;
 
-public class MainActivity extends BaseActivitiy<MainActivityViewModel> implements MainActivityViewModel.MainViewModelListener {
+public class MainActivity extends BaseActivity<MainActivityViewModel> implements MainActivityViewModel.MainViewModelListener {
 
     private static final String TAG = "MainActivity";
     private static final String START_KEY = "START_KEY";
@@ -68,11 +69,10 @@ public class MainActivity extends BaseActivitiy<MainActivityViewModel> implement
     }
 
     /**
-     * todo: implement
      * @return
      */
     @Override
     public DialogManager getDialogManager() {
-        return null;
+        return new DialogManagerImpl(this.getApplication());
     }
 }

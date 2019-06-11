@@ -11,9 +11,9 @@ import at.stefanirndorfer.spreadit.view.listener.BackPressListener;
 import at.stefanirndorfer.spreadit.viewmodel.base.BaseActivityViewModel;
 import at.stefanirndorfer.spreadit.viewmodel.listener.ViewModelListener;
 
-public abstract class BaseActivitiy<VIEW_MODEL extends BaseActivityViewModel> extends AppCompatActivity implements ViewModelListener {
+public abstract class BaseActivity<VIEW_MODEL extends BaseActivityViewModel> extends AppCompatActivity implements ViewModelListener {
 
-    private static final String TAG = "BaseActivitiy";
+    private static final String TAG = "BaseActivity";
 
     private VIEW_MODEL viewModel;
     private boolean isResumed;

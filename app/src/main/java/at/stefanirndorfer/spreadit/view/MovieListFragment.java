@@ -8,8 +8,6 @@ import at.stefanirndorfer.spreadit.databinding.FragmentMovieListBinding;
 import at.stefanirndorfer.spreadit.view.base.BaseFragment;
 import at.stefanirndorfer.spreadit.viewmodel.MovieListFragmentViewModel;
 import at.stefanirndorfer.spreadit.viewmodel.ViewModelFactory;
-import at.stefanirndorfer.spreadit.viewmodel.base.BaseFragmentViewModel;
-import at.stefanirndorfer.spreadit.viewmodel.listener.ViewModelListener;
 
 @SuppressLint("ValidFragment")
 class MovieListFragment extends BaseFragment implements MovieListFragmentViewModel.MovieListFragmentViewModelListener {
@@ -27,7 +25,7 @@ class MovieListFragment extends BaseFragment implements MovieListFragmentViewMod
     }
 
     @Override
-    protected BaseFragmentViewModel createViewModel() {
+    protected MovieListFragmentViewModel createViewModel() {
         return ViewModelFactory.getInstance(getActivity().getApplication()).createFragemntViewModel(MovieListFragmentViewModel.class, this);
     }
 
