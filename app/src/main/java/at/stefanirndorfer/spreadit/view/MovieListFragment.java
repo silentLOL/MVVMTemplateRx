@@ -26,11 +26,11 @@ class MovieListFragment extends BaseFragment implements MovieListFragmentViewMod
 
     @Override
     protected MovieListFragmentViewModel createViewModel() {
-        return ViewModelFactory.getInstance(getActivity().getApplication()).createFragemntViewModel(MovieListFragmentViewModel.class, this);
+        return ViewModelFactory.getInstance(getActivity().getApplication()).createFragmentViewModel(MovieListFragmentViewModel.class, this);
     }
 
     @Override
-    public void navigateToMovieListFragment() {
-
+    public void navigateToSearchFragment() {
+        getNavigationController().navigateToSearchFragment();
     }
 }

@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import at.stefanirndorfer.spreadit.BR;
+import at.stefanirndorfer.spreadit.navigation.NavigationController;
 import at.stefanirndorfer.spreadit.view.dialogs.DialogManager;
 import at.stefanirndorfer.spreadit.view.dialogs.DialogManagerImpl;
 import at.stefanirndorfer.spreadit.viewmodel.base.BaseFragmentViewModel;
@@ -99,6 +100,10 @@ public abstract class BaseFragment<VIEW_BINDING extends ViewDataBinding, VIEW_MO
 
     public Context getAppContext() {
         return getActivity().getApplicationContext();
+    }
+
+    public NavigationController getNavigationController(){
+        return (NavigationController) getActivity();
     }
 
     public DialogManager getDialogManager() {

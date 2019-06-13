@@ -1,20 +1,36 @@
 package at.stefanirndorfer.spreadit.data;
 
-import android.database.Observable;
-
-import at.stefanirndorfer.spreadit.data.datatypes.Movie;
+import at.stefanirndorfer.spreadit.data.datatypes.response.MovieQueryResponse;
 import at.stefanirndorfer.spreadit.data.source.SpreadItDataSource;
-import at.stefanirndorfer.spreadit.data.source.remote.SpreadItNetworkDataSource;
 import at.stefanirndorfer.spreadit.utils.AppExecutors;
+import io.reactivex.Observable;
 
 public class DataRepository implements SpreadItDataSource {
 
-    public static DataRepository getInstance(SpreadItNetworkDataSource instance) {
-        return null;
+    private volatile static DataRepository INSTANCE = null;
+    private final SpreadItDataSource remoteDataSource;
+    private final AppExecutors executors;
+    private Object lock = new Object();
+
+
+    private DataRepository(SpreadItDataSource spreadItDataSource, AppExecutors executors) {
+        this.remoteDataSource = spreadItDataSource;
+        this.executors = executors;
+    }
+
+    public static DataRepository getInstance(SpreadItDataSource remoteSessionsDataSource, AppExecutors executors) {
+        if (INSTANCE == null) {
+            synchronized (DataRepository.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new DataRepository(remoteSessionsDataSource, executors);
+                }
+            }
+        }
+        return INSTANCE;
     }
 
     @Override
-    public Observable<Movie> getMovieByName(String name) {
-        return null;
+    public Observable<MovieQueryResponse> getMovieByName(String name) {
+        return remoteDataSource.getMovieByName(name);
     }
 }

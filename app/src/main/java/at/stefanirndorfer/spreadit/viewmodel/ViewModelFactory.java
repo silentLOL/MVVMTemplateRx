@@ -55,7 +55,7 @@ public class ViewModelFactory {
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
     }
 
-    public <T extends BaseFragmentViewModel> T createFragemntViewModel(Class<T> modelClass, ViewModelListener listener) {
+    public <T extends BaseFragmentViewModel> T createFragmentViewModel(Class<T> modelClass, ViewModelListener listener) {
         if (modelClass.isAssignableFrom(SignUpFragmentViewModel.class)) {
             //noinspection unchecked
             return (T) new SignUpFragmentViewModel((SignUpFragmentViewModel.SignUpFragmentViewModelListener) listener,
@@ -64,6 +64,11 @@ public class ViewModelFactory {
         } else if (modelClass.isAssignableFrom(MovieListFragmentViewModel.class)) {
             //noinspection unchecked
             return (T) new MovieListFragmentViewModel((MovieListFragmentViewModel.MovieListFragmentViewModelListener) listener,
+                    application,
+                    dataRepository);
+        } else if (modelClass.isAssignableFrom(SearchFragmentViewModel.class)) {
+            //noinspection unchecked
+            return (T) new SearchFragmentViewModel((SearchFragmentViewModel.SearchFragmentViewModelListener) listener,
                     application,
                     dataRepository);
         }

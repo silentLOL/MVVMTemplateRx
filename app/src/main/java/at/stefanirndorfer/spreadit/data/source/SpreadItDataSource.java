@@ -1,10 +1,10 @@
 package at.stefanirndorfer.spreadit.data.source;
 
-import android.database.Observable;
 
-import at.stefanirndorfer.spreadit.data.datatypes.Movie;
+import at.stefanirndorfer.spreadit.data.datatypes.response.MovieQueryResponse;
+import io.reactivex.Observable;
 
 public interface SpreadItDataSource {
 
-    public Observable<Movie> getMovieByName(String name);
+    public Observable<MovieQueryResponse> getMovieByName(String name);
 }

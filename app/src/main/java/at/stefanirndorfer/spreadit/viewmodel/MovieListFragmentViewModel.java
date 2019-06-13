@@ -15,7 +15,8 @@ public class MovieListFragmentViewModel extends BaseFragmentViewModel<MovieListF
         super(listener, application, dataRepository);
     }
 
-    public interface MovieListFragmentViewModelListener extends ViewModelListener, NavigationController {
+    public interface MovieListFragmentViewModelListener extends ViewModelListener {
+        void navigateToSearchFragment();
     }
 
     @Override
@@ -33,5 +34,6 @@ public class MovieListFragmentViewModel extends BaseFragmentViewModel<MovieListF
 
     private void onDialogCompleted() {
         Timber.d("Dialog was completed");
+        getListener().navigateToSearchFragment();
     }
 }

@@ -5,4 +5,5 @@
     <string name="example_dialog_title">This is a Dialog</string>
     <string name="example_dialog_msg">Hallo, liebe Familie.</string>
     <string name="cancel">Cancel</string>
+    <string name="enter_search_query_hint">search</string>
 </resources>

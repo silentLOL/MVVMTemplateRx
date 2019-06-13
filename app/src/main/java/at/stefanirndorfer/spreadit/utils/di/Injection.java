@@ -15,6 +15,6 @@ import at.stefanirndorfer.spreadit.utils.AppExecutors;
  */
 public class Injection {
     public static DataRepository provideDataRepository(@NonNull Context context) {
-        return DataRepository.getInstance(SpreadItNetworkDataSource.getInstance(new AppExecutors()));
+        return DataRepository.getInstance(SpreadItNetworkDataSource.getInstance(), new AppExecutors());
     }
 }

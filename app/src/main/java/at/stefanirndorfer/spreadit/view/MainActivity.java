@@ -68,6 +68,11 @@ public class MainActivity extends BaseActivity<MainActivityViewModel> implements
         navigateToNextScreen(MovieListFragment.newInstance(null), MovieListFragment.TAG);
     }
 
+    @Override
+    public void navigateToSearchFragment() {
+        navigateToNextScreen(new SearchFragment(), SearchFragment.TAG);
+    }
+
     /**
      * @return
      */

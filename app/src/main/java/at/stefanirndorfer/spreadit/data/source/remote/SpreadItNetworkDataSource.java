@@ -1,30 +1,29 @@
 package at.stefanirndorfer.spreadit.data.source.remote;
 
-import android.database.Observable;
-
 import androidx.annotation.NonNull;
-import at.stefanirndorfer.spreadit.data.datatypes.Movie;
+import at.stefanirndorfer.spreadit.data.datatypes.response.MovieQueryResponse;
 import at.stefanirndorfer.spreadit.data.source.SpreadItDataSource;
+import at.stefanirndorfer.spreadit.utils.ApiConstants;
 import at.stefanirndorfer.spreadit.utils.AppExecutors;
+import io.reactivex.Observable;
 
 public class SpreadItNetworkDataSource implements SpreadItDataSource {
 
-    private static volatile SpreadItNetworkDataSource instance;
-    private final AppExecutors appExecutors;
+    private static SpreadItNetworkDataSource instance;
 
-    public static SpreadItNetworkDataSource getInstance(@NonNull AppExecutors appExecutors) {
+    public static SpreadItNetworkDataSource getInstance() {
         if (instance == null) {
-            instance = new SpreadItNetworkDataSource(appExecutors);
+            instance = new SpreadItNetworkDataSource();
         }
         return instance;
     }
 
-    private SpreadItNetworkDataSource(AppExecutors appExecutors) {
-        this.appExecutors = appExecutors;
+    private SpreadItNetworkDataSource() {
     }
 
     @Override
-    public Observable<Movie> getMovieByName(String name) {
-        return null;
+    public Observable<MovieQueryResponse> getMovieByName(String name) {
+        SpreadItNetworkService spreadItNetworkService = RetrofitClient.getRetrofitInstance().create(SpreadItNetworkService.class);
+        return spreadItNetworkService.getMovies(ApiConstants.API_KEY, name, 1);
     }
 }
