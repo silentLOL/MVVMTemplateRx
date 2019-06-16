@@ -102,7 +102,7 @@ public abstract class BaseFragment<VIEW_BINDING extends ViewDataBinding, VIEW_MO
         return getActivity().getApplicationContext();
     }
 
-    public NavigationController getNavigationController(){
+    public NavigationController getNavigationController() {
         return (NavigationController) getActivity();
     }
 

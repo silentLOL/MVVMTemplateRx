@@ -1,4 +1,4 @@
-package at.stefanirndorfer.spreadit.data.source.remote;
+package at.stefanirndorfer.spreadit.data.source.remote.retrofit;
 
 import com.ryanharter.auto.value.moshi.MoshiAdapterFactory;
 import com.squareup.moshi.JsonAdapter;

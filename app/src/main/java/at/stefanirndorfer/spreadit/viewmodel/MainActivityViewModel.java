@@ -26,7 +26,9 @@ public class MainActivityViewModel extends BaseActivityViewModel<MainActivityVie
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestUserBasedOnStartValue(savedInstanceState);
+        if (savedInstanceState == null) {
+            requestUserBasedOnStartValue(savedInstanceState);
+        }
     }
 
     /**

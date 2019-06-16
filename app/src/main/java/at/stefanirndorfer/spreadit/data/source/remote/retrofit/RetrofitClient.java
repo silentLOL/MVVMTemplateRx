@@ -1,4 +1,4 @@
-package at.stefanirndorfer.spreadit.data.source.remote;
+package at.stefanirndorfer.spreadit.data.source.remote.retrofit;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

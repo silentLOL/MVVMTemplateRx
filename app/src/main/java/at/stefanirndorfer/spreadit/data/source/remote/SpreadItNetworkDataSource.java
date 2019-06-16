@@ -1,10 +1,9 @@
 package at.stefanirndorfer.spreadit.data.source.remote;
 
-import androidx.annotation.NonNull;
 import at.stefanirndorfer.spreadit.data.datatypes.response.MovieQueryResponse;
 import at.stefanirndorfer.spreadit.data.source.SpreadItDataSource;
+import at.stefanirndorfer.spreadit.data.source.remote.retrofit.RetrofitClient;
 import at.stefanirndorfer.spreadit.utils.ApiConstants;
-import at.stefanirndorfer.spreadit.utils.AppExecutors;
 import io.reactivex.Observable;
 
 public class SpreadItNetworkDataSource implements SpreadItDataSource {
